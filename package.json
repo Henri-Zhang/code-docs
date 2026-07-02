@@ -1,0 +1,20 @@
+{
+  "name": "code-docs",
+  "description": "Leetcode代码文档",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "docs:clean-dev": "vuepress dev docs --clean-cache",
+    "docs:dev": "node genDocsConfig && vuepress dev docs",
+    "docs:build": "node genDocsConfig && vuepress build docs",
+    "docs:update-package": "pnpm dlx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.30",
+    "@vuepress/theme-default": "2.0.0-rc.131",
+    "sass-embedded": "^1.100.0",
+    "vue": "^3.5.39",
+    "vuepress": "2.0.0-rc.30"
+  }
+}
