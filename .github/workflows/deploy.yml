@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # 支持网页手动触发构建
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: 22
 
-      # 去掉 --frozen-lockfile，先兼容无锁文件场景
       - name: Install Dependencies
         run: pnpm install
 
@@ -38,12 +37,11 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm run docs:build
-          # 生成 .nojekyll 防止 GitHub Pages 忽略下划线文件夹
           touch docs/.vuepress/dist/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # 必须改成 gh-pages，不能写 main！！
+          branch: gh-pages
           folder: docs/.vuepress/dist
           clean: true
